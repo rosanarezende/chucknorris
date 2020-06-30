@@ -4,7 +4,10 @@ import { push } from "connected-react-router"
 
 import { getCategories, setSelectedCategory } from "../../actions/jokes"
 
-function HomePage(){
+import { Typography } from "@material-ui/core"
+import { PageWrapper, CategoriesWrapper, CategoryButton } from "./styles"
+
+function HomePage() {
     const dispatch = useDispatch()
     const { categories } = useSelector(state => state.jokes)
 
@@ -18,13 +21,21 @@ function HomePage(){
     }
 
     return (
-        <>
-        HomePage
-        {categories?.map(category => 
-            <div key={category} onClick={() => onClickCategory(category)}>
-                {category}
-            </div>)}
-        </>
+        <PageWrapper>
+            <Typography variant="h5" align="center">
+                Choose a category to retrieve a random Chuck Norris joke!
+            </Typography>
+            <CategoriesWrapper>
+                {categories?.map(category =>
+                    <CategoryButton key={category}
+                        onClick={() => onClickCategory(category)}
+                        variant="outlined"
+                        color="secondary"
+                    >
+                        {category}
+                    </CategoryButton>)}
+            </CategoriesWrapper>
+        </PageWrapper>
     )
 }
 
