@@ -1,11 +1,6 @@
 import axios from 'axios'
-// import { push } from 'connected-react-router'
-
-import { 
-    // routes, 
-    baseUrl } from "../utils/constants"
+import { baseUrl } from "../utils/constants"
 import { setLoading } from "./loading"
-import { setMessage, setOpen } from "./message"
 
 export const setCategories = (categories) => ({
     type: "SET_CATEGORIES",
@@ -23,11 +18,7 @@ export const getCategories = () => async (dispatch) => {
     }
     catch (err) {
         dispatch(setLoading(false))
-
-        console.error(err.response)
-        dispatch(setMessage(err?.response?.data?.message || "Não foi possivel acessar a lista de categorias!", "red"))
-        dispatch(setOpen(true))
-
+        console.error(err)
     }
 }
 
@@ -51,16 +42,10 @@ export const getJokeByCategory = (categoryName) => async (dispatch) => {
         const response = await axios.get(`${baseUrl}/random?category=${categoryName}`)
         dispatch(setLoading(false))
         dispatch(setJokeByCategory(response.data))
-
-        // dispatch(setMessage(response?.data?.message, "green"))
-        // dispatch(setOpen(true))
     }
     catch (err) {
         dispatch(setLoading(false))
-
-        console.error(err.response)
-        dispatch(setMessage(err?.response?.data?.message || "Não foi possivel acessar a lista de categorias!", "red"))
-        dispatch(setOpen(true))
+        console.error(err)
 
     }
 }
