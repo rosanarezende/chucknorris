@@ -1,5 +1,5 @@
 export const routes = {
-    home: "/",
+    home: `${process.env.PUBLIC_URL}/`,
     category: "/category/:name"
 }
 
