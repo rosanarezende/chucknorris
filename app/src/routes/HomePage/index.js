@@ -17,7 +17,7 @@ function HomePage() {
 
     const onClickCategory = async (category) => {
         await dispatch(setSelectedCategory(category))
-        dispatch(push(`/category/${category}`))
+        dispatch(push(`/chucknorris/category/${category}`))
     }
 
     return (
